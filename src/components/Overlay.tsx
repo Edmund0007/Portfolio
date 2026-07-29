@@ -102,27 +102,27 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
         </div>
       </motion.div>
 
-      {/* ── SECTION 2 · Right side / Mobile Centered ───────────────────────── */}
+      {/* ── SECTION 2 · Right side / Mobile Lower Red Area ─────────────────── */}
       <motion.div
         style={{ opacity: op2, y: y2 }}
-        className="absolute inset-0 flex flex-col justify-center
+        className="absolute inset-0 flex flex-col justify-end sm:justify-center pb-20 sm:pb-0
                    items-center sm:items-end px-4 sm:px-6 md:px-16 lg:px-20 text-center sm:text-right"
       >
-        <div className="max-w-[290px] sm:max-w-[360px] lg:max-w-[410px] flex flex-col items-center sm:items-end">
+        <div className="max-w-[290px] sm:max-w-[360px] lg:max-w-[410px] flex flex-col items-center sm:items-end bg-black/50 sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none p-3.5 sm:p-0 rounded-2xl border border-white/10 sm:border-none shadow-2xl sm:shadow-none">
           <span className="font-mono text-[9px] sm:text-[10px] md:text-xs tracking-[0.25em] uppercase
-                           text-orange-400 mb-1.5 sm:mb-3 block">
+                           text-orange-400 mb-1 sm:mb-3 block font-bold">
             02 / SPECIALIZATION
           </span>
-          <h2 className="text-lg sm:text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight
-                         leading-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
-            I design and build
-            <span className="block text-transparent bg-clip-text
+          <h2 className="text-base sm:text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight
+                         leading-snug sm:leading-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
+            I design and build{" "}
+            <span className="block sm:inline text-transparent bg-clip-text
                              bg-gradient-to-r from-amber-400 to-orange-500">
               interactive systems.
             </span>
           </h2>
-          <p className="mt-2.5 sm:mt-5 text-[11px] sm:text-xs md:text-sm font-light text-white/65
-                        leading-relaxed drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)] max-w-[280px] sm:max-w-[360px]">
+          <p className="mt-1.5 sm:mt-4 text-[10px] sm:text-xs md:text-sm font-light text-white/70
+                        leading-relaxed drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)] max-w-[270px] sm:max-w-[360px]">
             Focused on the interface between user experience and digital
             platforms — responsive mobile apps, VR environments, and
             hardware prototypes.
@@ -130,28 +130,27 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
         </div>
       </motion.div>
 
-      {/* ── SECTION 3 · Right side / Mobile Centered ───────────────────────── */}
+      {/* ── SECTION 3 · Right side / Mobile Lower Red Area ─────────────────── */}
       <motion.div
         style={{ opacity: op3, y: y3 }}
-        className="absolute inset-0 flex flex-col justify-center
+        className="absolute inset-0 flex flex-col justify-end sm:justify-center pb-20 sm:pb-0
                    items-center sm:items-end px-4 sm:px-6 md:px-16 lg:px-20 text-center sm:text-right"
       >
-        <div className="max-w-[290px] sm:max-w-[360px] lg:max-w-[410px] flex flex-col items-center sm:items-end">
+        <div className="max-w-[290px] sm:max-w-[360px] lg:max-w-[410px] flex flex-col items-center sm:items-end bg-black/50 sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none p-3.5 sm:p-0 rounded-2xl border border-white/10 sm:border-none shadow-2xl sm:shadow-none">
           <span className="font-mono text-[9px] sm:text-[10px] md:text-xs tracking-[0.25em] uppercase
-                           text-orange-400 mb-1.5 sm:mb-3 block">
+                           text-orange-400 mb-1 sm:mb-3 block font-bold">
             03 / PROCESS
           </span>
-          <h2 className="text-lg sm:text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight
-                         leading-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
-            Bringing creative ideas to
-            <span className="block text-transparent bg-clip-text
-                             bg-gradient-to-r from-orange-400 to-red-500
-                             pb-1 sm:pb-3">
+          <h2 className="text-base sm:text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight
+                         leading-snug sm:leading-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
+            Bringing creative ideas to{" "}
+            <span className="block sm:inline text-transparent bg-clip-text
+                             bg-gradient-to-r from-orange-400 to-red-500">
               physical &amp; digital reality.
             </span>
           </h2>
-          <p className="mt-2.5 sm:mt-5 text-[11px] sm:text-xs md:text-sm font-light text-white/65
-                        leading-relaxed drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)] max-w-[280px] sm:max-w-[360px]">
+          <p className="mt-1.5 sm:mt-4 text-[10px] sm:text-xs md:text-sm font-light text-white/70
+                        leading-relaxed drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)] max-w-[270px] sm:max-w-[360px]">
             Combining vector animations, UI/UX mockups, and structured
             coding to produce engaging digital products and visual branding.
           </p>
