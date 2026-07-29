@@ -390,19 +390,19 @@ function DesignToolsArc({ onExploreClick }: DesignToolsArcProps) {
 
   const isMobile = windowWidth < 640;
   const isTablet = windowWidth >= 640 && windowWidth < 1024;
-  const radiusX = isMobile ? Math.min(windowWidth * 0.38, 140) : isTablet ? 260 : 360;
-  const radiusY = isMobile ? 115 : isTablet ? 160 : 210;
+  const radiusX = isMobile ? Math.min(windowWidth * 0.42, 160) : isTablet ? 260 : 360;
+  const radiusY = isMobile ? 145 : isTablet ? 165 : 210;
 
   return (
     <div className="mb-20 pb-16 relative flex flex-col items-center select-none border-b border-white/10">
       {/* Background Ambient Glow matching active tool color */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[500px] md:w-[650px] h-[250px] sm:h-[350px] md:h-[400px] rounded-full blur-[90px] md:blur-[130px] pointer-events-none transition-all duration-700 opacity-20"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[500px] md:w-[650px] h-[250px] sm:h-[350px] md:h-[400px] rounded-full blur-[90px] md:blur-[130px] pointer-events-none transition-all duration-700 opacity-20"
         style={{ backgroundColor: activeTool.glowColor }}
       />
 
       {/* Semi-Circular Arch Container of Glowing Squircle Icons */}
-      <div className="relative w-full max-w-5xl h-[340px] sm:h-[480px] md:h-[540px] flex items-center justify-center">
+      <div className="relative w-full max-w-5xl h-[380px] sm:h-[480px] md:h-[540px] flex items-center justify-center">
         {toolsList.map((tool, index) => {
           // Angle math: from -132deg (left bottom) to +132deg (right bottom)
           const angleDeg = -132 + index * (264 / (total - 1));
@@ -426,7 +426,7 @@ function DesignToolsArc({ onExploreClick }: DesignToolsArcProps) {
               animate={{
                 x,
                 y,
-                scale: isActive ? 1.35 : 1,
+                scale: isActive ? (isMobile ? 1.2 : 1.35) : 1,
                 opacity: isActive ? 1 : 0.85,
               }}
               transition={{
@@ -440,7 +440,7 @@ function DesignToolsArc({ onExploreClick }: DesignToolsArcProps) {
                   : `0 0 12px ${tool.glowColor}40`,
                 borderColor: isActive ? tool.glowColor : "rgba(255, 255, 255, 0.18)",
               }}
-              className={`absolute w-11 h-11 md:w-16 md:h-16 rounded-2xl md:rounded-[22px] bg-gradient-to-br ${tool.bgGradient} border flex items-center justify-center p-2 cursor-pointer transition-shadow duration-300 z-20 group`}
+              className={`absolute w-9 h-9 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-xl sm:rounded-2xl md:rounded-[22px] bg-gradient-to-br ${tool.bgGradient} border flex items-center justify-center p-1.5 sm:p-2 cursor-pointer transition-shadow duration-300 z-20 group`}
             >
               <div className="w-full h-full flex items-center justify-center transition-transform group-hover:scale-110">
                 {tool.icon}
@@ -449,7 +449,7 @@ function DesignToolsArc({ onExploreClick }: DesignToolsArcProps) {
               {/* Number Badge Pill on Active Icon */}
               {isActive && (
                 <span
-                  className="absolute -top-2 -right-2 px-1.5 py-0.5 rounded-full text-[9px] font-mono font-bold text-black shadow-lg"
+                  className="absolute -top-1.5 -right-1.5 sm:-top-2 sm:-right-2 px-1 sm:px-1.5 py-0.5 rounded-full text-[8px] sm:text-[9px] font-mono font-bold text-black shadow-lg"
                   style={{ backgroundColor: tool.glowColor }}
                 >
                   {tool.num}
@@ -459,17 +459,17 @@ function DesignToolsArc({ onExploreClick }: DesignToolsArcProps) {
           );
         })}
 
-        {/* Center Content Box inside the Arch (Dead-Center Alignment) */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center max-w-lg px-6 z-10 flex flex-col items-center">
+        {/* Center Content Box inside the Arch (Dead-Center Alignment with Vertical Mobile Clearance) */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[28%] sm:-translate-y-1/2 text-center max-w-lg px-4 sm:px-6 z-10 flex flex-col items-center">
           {/* Active Tool Index Pill */}
           <motion.div
             key={`badge-${activeIndex}`}
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/15 text-[10px] font-mono tracking-[0.2em] uppercase text-white/60 mb-3"
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-white/5 border border-white/15 text-[9px] sm:text-[10px] font-mono tracking-[0.15em] sm:tracking-[0.2em] uppercase text-white/60 mb-2 sm:mb-3"
           >
             <span
-              className="w-2 h-2 rounded-full animate-pulse"
+              className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full animate-pulse"
               style={{ backgroundColor: activeTool.glowColor }}
             />
             <span>MY EXPERTISE • {activeTool.num} / 14</span>
@@ -483,7 +483,7 @@ function DesignToolsArc({ onExploreClick }: DesignToolsArcProps) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.25 }}
-              className="text-3xl md:text-5xl font-black tracking-tight text-white uppercase leading-tight drop-shadow-md"
+              className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-white uppercase leading-tight drop-shadow-md"
             >
               {activeTool.name}
             </motion.h3>
@@ -497,7 +497,7 @@ function DesignToolsArc({ onExploreClick }: DesignToolsArcProps) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.25, delay: 0.05 }}
-              className="text-xs md:text-sm font-light text-white/70 mt-3 leading-relaxed max-w-sm md:max-w-md min-h-[40px]"
+              className="text-[11px] sm:text-xs md:text-sm font-light text-white/70 mt-2 sm:mt-3 leading-relaxed max-w-[260px] sm:max-w-sm md:max-w-md min-h-[36px]"
             >
               {activeTool.description}
             </motion.p>

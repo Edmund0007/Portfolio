@@ -24,18 +24,17 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
     return () => clearInterval(interval);
   }, [roles.length]);
 
-  // ─── Section 1: FIXED — never fades, always visible ──────────────────────
-  // No animation needed; rendered as a static div below
+  // ─── Section 1: 0% → 25% (Left side hero, fades out as user scrolls) ─────
+  const op1 = useTransform(scrollYProgress, [0, 0.15, 0.25], [1, 1, 0]);
+  const y1  = useTransform(scrollYProgress, [0, 0.15, 0.25], [0, -25, -50]);
 
-  // ─── Section 2: 30% → 55% (right side) ─────────────────────────────────────
-  // Starts fading IN at 0.30 — well after section 1 is gone at 0.20
+  // ─── Section 2: 30% → 55% (Specialization) ─────────────────────────────────
   const op2 = useTransform(scrollYProgress, [0.30, 0.37, 0.48, 0.55], [0, 1, 1, 0]);
-  const y2  = useTransform(scrollYProgress, [0.30, 0.37, 0.48, 0.55], [60, 0, 0, -60]);
+  const y2  = useTransform(scrollYProgress, [0.30, 0.37, 0.48, 0.55], [50, 0, 0, -50]);
 
-  // ─── Section 3: 65% → 90% (right side) ─────────────────────────────────────
-  // Starts fading IN at 0.65 — well after section 2 is gone at 0.55
+  // ─── Section 3: 65% → 90% (Process) ────────────────────────────────────────
   const op3 = useTransform(scrollYProgress, [0.65, 0.72, 0.83, 0.90], [0, 1, 1, 0]);
-  const y3  = useTransform(scrollYProgress, [0.65, 0.72, 0.83, 0.90], [60, 0, 0, -60]);
+  const y3  = useTransform(scrollYProgress, [0.65, 0.72, 0.83, 0.90], [50, 0, 0, -50]);
 
   return (
     /*
@@ -45,8 +44,9 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
      */
     <div className="sticky top-0 h-screen w-full pointer-events-none z-10">
 
-      {/* ── SECTION 1 · Left side · FIXED (no fade, always visible) ─────────── */}
-      <div
+      {/* ── SECTION 1 · Left side ──────────────────────────────────────────── */}
+      <motion.div
+        style={{ opacity: op1, y: y1 }}
         className="absolute inset-0 flex flex-col justify-center
                    items-start px-4 sm:px-6 md:px-16 lg:px-20 text-left"
       >
@@ -87,7 +87,7 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
           </p>
 
           {/* Scroll indicator */}
-          <div className="mt-8 flex flex-col items-start gap-2">
+          <div className="mt-6 sm:mt-8 flex flex-col items-start gap-2">
             <span className="font-mono text-[9px] tracking-[0.2em] text-white/40 uppercase drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
               Scroll to begin
             </span>
@@ -100,20 +100,20 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
-      {/* ── SECTION 2 · Right side ──────────────────────────────────────────── */}
+      {/* ── SECTION 2 · Right side / Mobile Centered ───────────────────────── */}
       <motion.div
         style={{ opacity: op2, y: y2 }}
         className="absolute inset-0 flex flex-col justify-center
-                   items-end px-6 md:px-16 lg:px-20 text-right"
+                   items-center sm:items-end px-4 sm:px-6 md:px-16 lg:px-20 text-center sm:text-right"
       >
-        <div className="max-w-[300px] md:max-w-[360px] lg:max-w-[410px] flex flex-col items-end">
+        <div className="max-w-[320px] sm:max-w-[360px] lg:max-w-[410px] flex flex-col items-center sm:items-end">
           <span className="font-mono text-[10px] md:text-xs tracking-[0.3em] uppercase
-                           text-orange-400 mb-3 block">
+                           text-orange-400 mb-2 sm:mb-3 block">
             02 / SPECIALIZATION
           </span>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter
+          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter
                          leading-[1.05] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
             I design and build
             <span className="block text-transparent bg-clip-text
@@ -121,7 +121,7 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
               interactive systems.
             </span>
           </h2>
-          <p className="mt-5 text-xs md:text-sm font-light text-white/55
+          <p className="mt-3 sm:mt-5 text-xs md:text-sm font-light text-white/65
                         leading-relaxed drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]">
             Focused on the interface between user experience and digital
             platforms — responsive mobile apps, VR environments, and
@@ -130,27 +130,27 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
         </div>
       </motion.div>
 
-      {/* ── SECTION 3 · Right side ──────────────────────────────────────────── */}
+      {/* ── SECTION 3 · Right side / Mobile Centered ───────────────────────── */}
       <motion.div
         style={{ opacity: op3, y: y3 }}
         className="absolute inset-0 flex flex-col justify-center
-                   items-end px-6 md:px-16 lg:px-20 text-right"
+                   items-center sm:items-end px-4 sm:px-6 md:px-16 lg:px-20 text-center sm:text-right"
       >
-        <div className="max-w-[300px] md:max-w-[360px] lg:max-w-[410px] flex flex-col items-end">
+        <div className="max-w-[320px] sm:max-w-[360px] lg:max-w-[410px] flex flex-col items-center sm:items-end">
           <span className="font-mono text-[10px] md:text-xs tracking-[0.3em] uppercase
-                           text-orange-400 mb-3 block">
+                           text-orange-400 mb-2 sm:mb-3 block">
             03 / PROCESS
           </span>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter
+          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter
                          leading-[1.15] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
             Bringing creative ideas to
             <span className="block text-transparent bg-clip-text
                              bg-gradient-to-r from-orange-400 to-red-500
-                             pb-3">
+                             pb-1 sm:pb-3">
               physical &amp; digital reality.
             </span>
           </h2>
-          <p className="mt-5 text-xs md:text-sm font-light text-white/55
+          <p className="mt-3 sm:mt-5 text-xs md:text-sm font-light text-white/65
                         leading-relaxed drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]">
             Combining vector animations, UI/UX mockups, and structured
             coding to produce engaging digital products and visual branding.
