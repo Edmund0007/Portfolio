@@ -65,16 +65,20 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
               <AnimatePresence mode="wait">
                 <motion.span
                   key={roleIndex}
-                  initial={{ x: 30, opacity: 0, scale: 0.92, filter: "blur(6px)" }}
-                  animate={{ x: 0, opacity: 1, scale: 1, filter: "blur(0px)" }}
-                  exit={{ x: -30, opacity: 0, scale: 0.92, filter: "blur(6px)" }}
+                  initial={{ x: 25, opacity: 0, scale: 0.94 }}
+                  animate={{ x: 0, opacity: 1, scale: 1 }}
+                  exit={{ x: -25, opacity: 0, scale: 0.94 }}
                   transition={{
                     type: "spring",
                     stiffness: 320,
                     damping: 22,
                     mass: 0.7,
                   }}
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-400 font-black inline-block whitespace-nowrap leading-tight py-0.5 drop-shadow-[0_4px_20px_rgba(251,146,60,0.45)] drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]"
+                  style={{
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                  className="bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-400 font-black inline-block whitespace-nowrap leading-tight py-0.5 drop-shadow-[0_4px_20px_rgba(251,146,60,0.45)] drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]"
                 >
                   {roles[roleIndex]}
                 </motion.span>
@@ -108,7 +112,7 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
         className="absolute inset-0 flex flex-col justify-end sm:justify-center pb-6 sm:pb-0
                    items-center sm:items-end px-4 sm:px-6 md:px-16 lg:px-20 text-center sm:text-right"
       >
-        <div className="max-w-[290px] sm:max-w-[360px] lg:max-w-[410px] flex flex-col items-center sm:items-end bg-black/60 sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none p-3.5 sm:p-0 rounded-2xl border border-white/10 sm:border-none shadow-2xl sm:shadow-none mb-2 sm:mb-0">
+        <div className="max-w-[290px] sm:max-w-[360px] lg:max-w-[410px] flex flex-col items-center sm:items-end text-center sm:text-right mb-2 sm:mb-0">
           <span className="font-mono text-[9px] sm:text-[10px] md:text-xs tracking-[0.25em] uppercase
                            text-orange-400 mb-1 sm:mb-3 block font-bold">
             02 / SPECIALIZATION
@@ -116,8 +120,10 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
           <h2 className="text-base sm:text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight
                          leading-snug sm:leading-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
             I design and build{" "}
-            <span className="block sm:inline text-transparent bg-clip-text
-                             bg-gradient-to-r from-amber-400 to-orange-500">
+            <span
+              style={{ WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
+              className="block sm:inline bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500"
+            >
               interactive systems.
             </span>
           </h2>
@@ -136,7 +142,7 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
         className="absolute inset-0 flex flex-col justify-end sm:justify-center pb-6 sm:pb-0
                    items-center sm:items-end px-4 sm:px-6 md:px-16 lg:px-20 text-center sm:text-right"
       >
-        <div className="max-w-[290px] sm:max-w-[360px] lg:max-w-[410px] flex flex-col items-center sm:items-end bg-black/60 sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none p-3.5 sm:p-0 rounded-2xl border border-white/10 sm:border-none shadow-2xl sm:shadow-none mb-2 sm:mb-0">
+        <div className="max-w-[290px] sm:max-w-[360px] lg:max-w-[410px] flex flex-col items-center sm:items-end text-center sm:text-right mb-2 sm:mb-0">
           <span className="font-mono text-[9px] sm:text-[10px] md:text-xs tracking-[0.25em] uppercase
                            text-orange-400 mb-1 sm:mb-3 block font-bold">
             03 / PROCESS
@@ -144,8 +150,10 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
           <h2 className="text-base sm:text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight
                          leading-snug sm:leading-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
             Bringing creative ideas to{" "}
-            <span className="block sm:inline text-transparent bg-clip-text
-                             bg-gradient-to-r from-orange-400 to-red-500">
+            <span
+              style={{ WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
+              className="block sm:inline bg-clip-text bg-gradient-to-r from-orange-400 to-red-500"
+            >
               physical &amp; digital reality.
             </span>
           </h2>
