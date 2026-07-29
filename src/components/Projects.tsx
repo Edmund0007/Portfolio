@@ -366,6 +366,15 @@ interface DesignToolsArcProps {
 function DesignToolsArc({ onExploreClick }: DesignToolsArcProps) {
   const [activeIndex, setActiveIndex] = useState<number>(3);
   const [isUserInteracting, setIsUserInteracting] = useState<boolean>(false);
+  const [windowWidth, setWindowWidth] = useState<number>(1024);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     if (isUserInteracting) return;
@@ -379,24 +388,25 @@ function DesignToolsArc({ onExploreClick }: DesignToolsArcProps) {
   const activeTool = toolsList[activeIndex];
   const total = toolsList.length;
 
+  const isMobile = windowWidth < 640;
+  const isTablet = windowWidth >= 640 && windowWidth < 1024;
+  const radiusX = isMobile ? Math.min(windowWidth * 0.38, 140) : isTablet ? 260 : 360;
+  const radiusY = isMobile ? 115 : isTablet ? 160 : 210;
+
   return (
     <div className="mb-20 pb-16 relative flex flex-col items-center select-none border-b border-white/10">
       {/* Background Ambient Glow matching active tool color */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[400px] rounded-full blur-[130px] pointer-events-none transition-all duration-700 opacity-20"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[500px] md:w-[650px] h-[250px] sm:h-[350px] md:h-[400px] rounded-full blur-[90px] md:blur-[130px] pointer-events-none transition-all duration-700 opacity-20"
         style={{ backgroundColor: activeTool.glowColor }}
       />
 
       {/* Semi-Circular Arch Container of Glowing Squircle Icons */}
-      <div className="relative w-full max-w-5xl h-[480px] md:h-[540px] flex items-center justify-center">
+      <div className="relative w-full max-w-5xl h-[340px] sm:h-[480px] md:h-[540px] flex items-center justify-center">
         {toolsList.map((tool, index) => {
           // Angle math: from -132deg (left bottom) to +132deg (right bottom)
           const angleDeg = -132 + index * (264 / (total - 1));
           const rad = (angleDeg * Math.PI) / 180;
-
-          // Radius for dome arc
-          const radiusX = typeof window !== "undefined" && window.innerWidth < 768 ? 160 : 360;
-          const radiusY = typeof window !== "undefined" && window.innerWidth < 768 ? 150 : 210;
 
           const x = Math.sin(rad) * radiusX;
           const y = -Math.cos(rad) * radiusY;
@@ -2126,6 +2136,15 @@ export default function Projects() {
   const [viewMode, setViewMode] = useState<"carousel" | "grid">("carousel");
   const [activeCarouselIndex, setActiveCarouselIndex] = useState<number>(0);
   const [isCarouselHovered, setIsCarouselHovered] = useState<boolean>(false);
+  const [windowWidth, setWindowWidth] = useState<number>(1024);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const filteredProjects = projects.filter((p) => {
     if (filter === "all") return true;
@@ -2207,7 +2226,7 @@ export default function Projects() {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[280px] bg-gradient-to-r from-orange-500/20 via-amber-500/25 to-yellow-500/15 rounded-full blur-[90px] pointer-events-none" />
 
             {/* 3D Arc Curved Cards Container */}
-            <div className="relative w-full max-w-5xl h-[360px] md:h-[410px] flex items-center justify-center perspective-[1200px] [transform-style:preserve-3d]">
+            <div className="relative w-full max-w-5xl h-[300px] sm:h-[360px] md:h-[410px] flex items-center justify-center perspective-[1200px] [transform-style:preserve-3d]">
               {projects.map((project, index) => {
                 const offset = index - activeCarouselIndex;
                 const absOffset = Math.abs(offset);
@@ -2215,11 +2234,15 @@ export default function Projects() {
                 // Hide items further away than 3 positions
                 if (absOffset > 3) return null;
 
-                // Calculate 3D Arc positions
+                // Responsive 3D Arc spacing
+                const isMobile = windowWidth < 640;
+                const isTablet = windowWidth >= 640 && windowWidth < 1024;
+                const stepX = isMobile ? 82 : isTablet ? 130 : 175;
+
                 const rotateY = offset === 0 ? 0 : offset < 0 ? 25 + absOffset * 6 : -25 - absOffset * 6;
-                const translateX = offset * 175;
-                const translateZ = -absOffset * 95;
-                const scale = offset === 0 ? 1.05 : Math.max(1 - absOffset * 0.1, 0.72);
+                const translateX = offset * stepX;
+                const translateZ = isMobile ? -absOffset * 50 : -absOffset * 95;
+                const scale = offset === 0 ? (isMobile ? 1.02 : 1.05) : Math.max(1 - absOffset * 0.1, 0.72);
                 const opacity = offset === 0 ? 1 : Math.max(1 - absOffset * 0.15, 0.65);
                 const zIndex = 30 - absOffset * 5;
 
@@ -2251,7 +2274,7 @@ export default function Projects() {
                       zIndex: zIndex,
                       transformStyle: "preserve-3d",
                     }}
-                    className={`absolute w-[190px] sm:w-[230px] md:w-[260px] aspect-[3/4.2] rounded-[24px] overflow-hidden border cursor-pointer group transition-all duration-500 shadow-2xl ${offset === 0
+                    className={`absolute w-[155px] sm:w-[220px] md:w-[260px] aspect-[3/4.2] rounded-[18px] sm:rounded-[24px] overflow-hidden border cursor-pointer group transition-all duration-500 shadow-2xl ${offset === 0
                         ? "border-orange-500/80 shadow-[0_20px_50px_rgba(249,115,22,0.35)] ring-1 ring-orange-500/50"
                         : "border-white/20 hover:border-orange-500/40 shadow-[0_15px_30px_rgba(0,0,0,0.8)]"
                       }`}
@@ -2445,15 +2468,15 @@ export default function Projects() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="relative w-full max-w-5xl bg-[#0c0d10] border border-white/15 rounded-3xl p-6 md:p-10 z-10 my-8 max-h-[90vh] overflow-y-auto shadow-2xl custom-scrollbar"
+              className="relative w-full max-w-5xl bg-[#0c0d10] border border-white/15 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-10 z-10 my-4 sm:my-8 max-h-[92vh] overflow-y-auto shadow-2xl custom-scrollbar"
             >
               {/* Close Button */}
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:bg-orange-500 hover:text-black hover:border-orange-500 text-white/70 transition-all duration-300 flex items-center justify-center z-20"
+                className="absolute top-4 right-4 sm:top-6 sm:right-6 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 border border-white/10 hover:bg-orange-500 hover:text-black hover:border-orange-500 text-white/70 transition-all duration-300 flex items-center justify-center z-20"
                 aria-label="Close modal"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
 
               {/* Modal Header */}

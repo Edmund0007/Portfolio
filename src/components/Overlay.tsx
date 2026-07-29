@@ -48,18 +48,18 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
       {/* ── SECTION 1 · Left side · FIXED (no fade, always visible) ─────────── */}
       <div
         className="absolute inset-0 flex flex-col justify-center
-                   items-start px-6 md:px-16 lg:px-20 text-left"
+                   items-start px-4 sm:px-6 md:px-16 lg:px-20 text-left"
       >
         <div className="max-w-full sm:max-w-[600px] md:max-w-[760px] lg:max-w-[920px]">
-          <span className="font-mono text-xs md:text-sm tracking-[0.25em] uppercase text-orange-400 font-bold mb-3 block">
+          <span className="font-mono text-xs md:text-sm tracking-[0.25em] uppercase text-orange-400 font-bold mb-2 sm:mb-3 block">
             HELLO, IT&apos;S ME
           </span>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.02] text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.02] text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
             EDMUND<br />AUGUSTINE
           </h1>
 
           {/* Animated Role Line: "I'm a [Role]" — Strictly Single Line Alignment */}
-          <div className="mt-3 text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold text-white flex items-baseline gap-2.5 sm:gap-3 whitespace-nowrap min-h-[48px] sm:min-h-[56px] relative">
+          <div className="mt-2 sm:mt-3 text-lg sm:text-2xl md:text-4xl lg:text-5xl font-bold text-white flex items-baseline gap-2 sm:gap-3 whitespace-nowrap min-h-[40px] sm:min-h-[56px] relative">
             <span className="text-white/90 shrink-0 whitespace-nowrap drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">I&apos;m a</span>
             <div className="relative overflow-visible flex items-center whitespace-nowrap">
               <AnimatePresence mode="wait">
@@ -82,7 +82,7 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
             </div>
           </div>
 
-          <p className="mt-4 text-xs md:text-sm font-light text-white/65 tracking-wide leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] max-w-md">
+          <p className="mt-3 sm:mt-4 text-xs md:text-sm font-light text-white/65 tracking-wide leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] max-w-md">
             I create visual experiences that communicate, inspire, and leave a lasting impact.
           </p>
 

@@ -43,8 +43,8 @@ export default function GithubCalendarSection() {
   };
 
   return (
-    <section id="github-activity" className="py-16 px-6 md:px-12 max-w-7xl mx-auto w-full relative z-20 bg-[#070708]">
-      <div className="glass-card p-6 md:p-10 rounded-3xl border border-white/10 shadow-2xl relative overflow-hidden">
+    <section id="github-activity" className="py-16 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto w-full relative z-20 bg-[#070708]">
+      <div className="glass-card p-4 sm:p-6 md:p-10 rounded-2xl sm:rounded-3xl border border-white/10 shadow-2xl relative overflow-hidden">
         {/* Subtle Background Glow */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-green-500/5 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl pointer-events-none" />
@@ -54,11 +54,11 @@ export default function GithubCalendarSection() {
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="font-mono text-xs tracking-[0.25em] uppercase text-emerald-400 font-bold">
+              <span className="font-mono text-[10px] sm:text-xs tracking-[0.25em] uppercase text-emerald-400 font-bold">
                 GITHUB OPEN SOURCE ACTIVITY
               </span>
             </div>
-            <h3 className="text-2xl md:text-4xl font-black text-white tracking-tight uppercase flex items-center gap-3">
+            <h3 className="text-xl sm:text-2xl md:text-4xl font-black text-white tracking-tight uppercase flex items-center gap-3">
               CONTRIBUTIONS & CODE TELEMETRY
             </h3>
           </div>

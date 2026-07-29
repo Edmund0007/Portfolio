@@ -167,7 +167,7 @@ export default function ResumeDetails() {
         </div>
 
         {/* Tab Filters */}
-        <div className="mt-6 md:mt-0 flex flex-wrap gap-2.5 bg-white/5 p-1.5 rounded-full border border-white/10">
+        <div className="mt-6 md:mt-0 flex flex-wrap gap-2 bg-white/5 p-1.5 rounded-2xl sm:rounded-full border border-white/10">
           {[
             { id: "all", label: "OVERVIEW" },
             { id: "education", label: "🎓 EDUCATION" },
@@ -177,7 +177,7 @@ export default function ResumeDetails() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as typeof activeTab)}
-              className={`px-4 py-2 rounded-full font-mono text-xs tracking-wider transition-all duration-300 ${
+              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full font-mono text-[11px] sm:text-xs tracking-wider transition-all duration-300 ${
                 activeTab === tab.id
                   ? "bg-orange-500 text-black font-bold shadow-lg"
                   : "text-white/60 hover:text-white hover:bg-white/5"
