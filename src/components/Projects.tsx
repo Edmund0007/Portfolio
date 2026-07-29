@@ -2216,14 +2216,14 @@ export default function Projects() {
         </div>
 
         {/* Right Column: 3D Arc Cover Flow Carousel (Replaces Old Stacked Deck) */}
-        <div className="lg:col-span-7 flex flex-col items-center relative z-10 py-2">
+        <div className="lg:col-span-7 flex flex-col items-center relative z-10 py-2 w-full">
           <div
             onMouseEnter={() => setIsCarouselHovered(true)}
             onMouseLeave={() => setIsCarouselHovered(false)}
-            className="relative w-full py-4 overflow-hidden flex flex-col items-center select-none"
+            className="relative w-full py-4 overflow-visible sm:overflow-hidden flex flex-col items-center select-none bg-transparent"
           >
-            {/* Ambient Center Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[280px] bg-gradient-to-r from-orange-500/20 via-amber-500/25 to-yellow-500/15 rounded-full blur-[90px] pointer-events-none" />
+            {/* Ambient Center Glow (Soft & Unclipped on Mobile to Eliminate Background Box Container) */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[260px] sm:max-w-none sm:w-[450px] h-[200px] sm:h-[280px] bg-gradient-to-r from-orange-500/20 via-amber-500/25 to-yellow-500/15 rounded-full blur-[50px] sm:blur-[90px] pointer-events-none" />
 
             {/* 3D Arc Curved Cards Container */}
             <div className="relative w-full max-w-5xl h-[300px] sm:h-[360px] md:h-[410px] flex items-center justify-center perspective-[1200px] [transform-style:preserve-3d]">
