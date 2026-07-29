@@ -24,17 +24,17 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
     return () => clearInterval(interval);
   }, [roles.length]);
 
-  // ─── Section 1: 0% → 12% (Left side hero, fades out quickly as user scrolls) ─
-  const op1 = useTransform(scrollYProgress, [0, 0.04, 0.12], [1, 1, 0]);
-  const y1  = useTransform(scrollYProgress, [0, 0.04, 0.12], [0, -20, -40]);
+  // ─── Section 1: 0% → 8% (Hero title, fades out completely early) ──────────
+  const op1 = useTransform(scrollYProgress, [0, 0.03, 0.08], [1, 1, 0]);
+  const y1  = useTransform(scrollYProgress, [0, 0.03, 0.08], [0, -15, -30]);
 
-  // ─── Section 2: 20% → 50% (Specialization) ─────────────────────────────────
-  const op2 = useTransform(scrollYProgress, [0.20, 0.28, 0.42, 0.50], [0, 1, 1, 0]);
-  const y2  = useTransform(scrollYProgress, [0.20, 0.28, 0.42, 0.50], [40, 0, 0, -40]);
+  // ─── Section 2: 18% → 48% (Specialization - anchored to lower red area) ──
+  const op2 = useTransform(scrollYProgress, [0.18, 0.24, 0.42, 0.48], [0, 1, 1, 0]);
+  const y2  = useTransform(scrollYProgress, [0.18, 0.24, 0.42, 0.48], [30, 0, 0, -30]);
 
-  // ─── Section 3: 58% → 88% (Process) ────────────────────────────────────────
-  const op3 = useTransform(scrollYProgress, [0.58, 0.66, 0.80, 0.88], [0, 1, 1, 0]);
-  const y3  = useTransform(scrollYProgress, [0.58, 0.66, 0.80, 0.88], [40, 0, 0, -40]);
+  // ─── Section 3: 58% → 88% (Process - anchored to lower red area) ─────────
+  const op3 = useTransform(scrollYProgress, [0.58, 0.64, 0.82, 0.88], [0, 1, 1, 0]);
+  const y3  = useTransform(scrollYProgress, [0.58, 0.64, 0.82, 0.88], [30, 0, 0, -30]);
 
   return (
     /*
@@ -102,13 +102,13 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
         </div>
       </motion.div>
 
-      {/* ── SECTION 2 · Right side / Mobile Lower Red Area ─────────────────── */}
+      {/* ── SECTION 2 · Right side / Mobile Lower Red Area (Suit/Tie Position) ─ */}
       <motion.div
         style={{ opacity: op2, y: y2 }}
-        className="absolute inset-0 flex flex-col justify-end sm:justify-center pb-20 sm:pb-0
+        className="absolute inset-0 flex flex-col justify-end sm:justify-center pb-6 sm:pb-0
                    items-center sm:items-end px-4 sm:px-6 md:px-16 lg:px-20 text-center sm:text-right"
       >
-        <div className="max-w-[290px] sm:max-w-[360px] lg:max-w-[410px] flex flex-col items-center sm:items-end bg-black/50 sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none p-3.5 sm:p-0 rounded-2xl border border-white/10 sm:border-none shadow-2xl sm:shadow-none">
+        <div className="max-w-[290px] sm:max-w-[360px] lg:max-w-[410px] flex flex-col items-center sm:items-end bg-black/60 sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none p-3.5 sm:p-0 rounded-2xl border border-white/10 sm:border-none shadow-2xl sm:shadow-none mb-2 sm:mb-0">
           <span className="font-mono text-[9px] sm:text-[10px] md:text-xs tracking-[0.25em] uppercase
                            text-orange-400 mb-1 sm:mb-3 block font-bold">
             02 / SPECIALIZATION
@@ -130,13 +130,13 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
         </div>
       </motion.div>
 
-      {/* ── SECTION 3 · Right side / Mobile Lower Red Area ─────────────────── */}
+      {/* ── SECTION 3 · Right side / Mobile Lower Red Area (Suit/Tie Position) ─ */}
       <motion.div
         style={{ opacity: op3, y: y3 }}
-        className="absolute inset-0 flex flex-col justify-end sm:justify-center pb-20 sm:pb-0
+        className="absolute inset-0 flex flex-col justify-end sm:justify-center pb-6 sm:pb-0
                    items-center sm:items-end px-4 sm:px-6 md:px-16 lg:px-20 text-center sm:text-right"
       >
-        <div className="max-w-[290px] sm:max-w-[360px] lg:max-w-[410px] flex flex-col items-center sm:items-end bg-black/50 sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none p-3.5 sm:p-0 rounded-2xl border border-white/10 sm:border-none shadow-2xl sm:shadow-none">
+        <div className="max-w-[290px] sm:max-w-[360px] lg:max-w-[410px] flex flex-col items-center sm:items-end bg-black/60 sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none p-3.5 sm:p-0 rounded-2xl border border-white/10 sm:border-none shadow-2xl sm:shadow-none mb-2 sm:mb-0">
           <span className="font-mono text-[9px] sm:text-[10px] md:text-xs tracking-[0.25em] uppercase
                            text-orange-400 mb-1 sm:mb-3 block font-bold">
             03 / PROCESS
