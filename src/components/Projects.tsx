@@ -2275,8 +2275,8 @@ export default function Projects() {
                       transformStyle: "preserve-3d",
                     }}
                     className={`absolute w-[155px] sm:w-[220px] md:w-[260px] aspect-[3/4.2] rounded-[18px] sm:rounded-[24px] overflow-hidden border cursor-pointer group transition-all duration-500 shadow-2xl ${offset === 0
-                        ? "border-orange-500/80 shadow-[0_20px_50px_rgba(249,115,22,0.35)] ring-1 ring-orange-500/50"
-                        : "border-white/20 hover:border-orange-500/40 shadow-[0_15px_30px_rgba(0,0,0,0.8)]"
+                      ? "border-orange-500/80 shadow-[0_20px_50px_rgba(249,115,22,0.35)] ring-1 ring-orange-500/50"
+                      : "border-white/20 hover:border-orange-500/40 shadow-[0_15px_30px_rgba(0,0,0,0.8)]"
                       }`}
                   >
                     {/* Full Cover Project Image */}
@@ -2323,8 +2323,8 @@ export default function Projects() {
                     key={idx}
                     onClick={() => setActiveCarouselIndex(idx)}
                     className={`h-1.5 rounded-full transition-all duration-300 ${activeCarouselIndex === idx
-                        ? "w-6 bg-orange-500 shadow-[0_0_12px_rgba(249,115,22,0.8)]"
-                        : "w-1.5 bg-white/20 hover:bg-white/40"
+                      ? "w-6 bg-orange-500 shadow-[0_0_12px_rgba(249,115,22,0.8)]"
+                      : "w-1.5 bg-white/20 hover:bg-white/40"
                       }`}
                     aria-label={`Go to slide ${idx + 1}`}
                   />
@@ -2352,8 +2352,8 @@ export default function Projects() {
               key={cat.value}
               onClick={() => setFilter(cat.value)}
               className={`px-4 py-2 rounded-full text-xs font-mono tracking-wider border transition-all duration-300 ${filter === cat.value
-                  ? "bg-orange-500 text-black border-orange-500 font-bold shadow-lg shadow-orange-500/20"
-                  : "bg-white/5 text-white/60 border-white/10 hover:border-orange-500/30 hover:text-white"
+                ? "bg-orange-500 text-black border-orange-500 font-bold shadow-lg shadow-orange-500/20"
+                : "bg-white/5 text-white/60 border-white/10 hover:border-orange-500/30 hover:text-white"
                 }`}
             >
               {cat.label}
