@@ -24,30 +24,28 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
     return () => clearInterval(interval);
   }, [roles.length]);
 
-  // ─── Section 1: 0% → 8% (Hero title, fades out completely early) ──────────
-  const op1 = useTransform(scrollYProgress, [0, 0.03, 0.08], [1, 1, 0]);
-  const y1  = useTransform(scrollYProgress, [0, 0.03, 0.08], [0, -15, -30]);
+  // ─── Section 1: Hero title (Fixed position, stays fully visible while scrolling)
+  // Section 1 remains fixed at opacity 1 on both web and mobile
+  const scrollIndicatorOp = useTransform(scrollYProgress, [0, 0.04], [1, 0]);
 
-  // ─── Section 2: 18% → 48% (Specialization - anchored to lower red area) ──
+  // ─── Section 2: 18% → 48% (Specialization - anchored on right / lower area) ──
   const op2 = useTransform(scrollYProgress, [0.18, 0.24, 0.42, 0.48], [0, 1, 1, 0]);
   const y2  = useTransform(scrollYProgress, [0.18, 0.24, 0.42, 0.48], [30, 0, 0, -30]);
 
-  // ─── Section 3: 58% → 88% (Process - anchored to lower red area) ─────────
+  // ─── Section 3: 58% → 88% (Process - anchored on right / lower area) ─────────
   const op3 = useTransform(scrollYProgress, [0.58, 0.64, 0.82, 0.88], [0, 1, 1, 0]);
   const y3  = useTransform(scrollYProgress, [0.58, 0.64, 0.82, 0.88], [30, 0, 0, -30]);
 
   return (
     /*
      * Single sticky container — everything lives inside one sticky div.
-     * Sections are absolute-positioned inside this container so they never
-     * stack DOM layers and can never bleed into each other.
+     * Sections are absolute-positioned inside this container.
      */
     <div className="sticky top-0 h-screen w-full pointer-events-none z-10">
 
-      {/* ── SECTION 1 · Left side ──────────────────────────────────────────── */}
-      <motion.div
-        style={{ opacity: op1, y: y1 }}
-        className="absolute inset-0 flex flex-col justify-center
+      {/* ── SECTION 1 · Left side (Fixed position, non-fading) ──────────────── */}
+      <div
+        className="absolute inset-0 flex flex-col justify-start pt-20 sm:justify-center sm:pt-0
                    items-start px-4 sm:px-6 md:px-16 lg:px-20 text-left"
       >
         <div className="max-w-full sm:max-w-[600px] md:max-w-[760px] lg:max-w-[920px]">
@@ -90,8 +88,8 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
             I create visual experiences that communicate, inspire, and leave a lasting impact.
           </p>
 
-          {/* Scroll indicator */}
-          <div className="mt-5 sm:mt-8 flex flex-col items-start gap-1.5 sm:gap-2">
+          {/* Scroll indicator (fades out as scroll starts) */}
+          <motion.div style={{ opacity: scrollIndicatorOp }} className="mt-5 sm:mt-8 flex flex-col items-start gap-1.5 sm:gap-2">
             <span className="font-mono text-[8px] sm:text-[9px] tracking-[0.2em] text-white/40 uppercase drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
               Scroll to begin
             </span>
@@ -102,9 +100,9 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
                 className="w-1 h-1.5 bg-orange-400 rounded-full"
               />
             </div>
-          </div>
+          </motion.div>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── SECTION 2 · Right side / Mobile Lower Red Area (Suit/Tie Position) ─ */}
       <motion.div
